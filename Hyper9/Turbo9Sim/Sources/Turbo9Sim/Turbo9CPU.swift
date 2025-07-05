@@ -55,28 +55,12 @@ enum Register {
 }
 
 public class Turbo9CPU {
-    let SWI3Vector: UInt16 = 0xFFF2
-    let SWI2Vector: UInt16 = 0xFFF4
-    let FIRQVector: UInt16 = 0xFFF6
-    let IRQVector: UInt16 = 0xFFF8
-    let SWIVector: UInt16 = 0xFFFA
-    let NMIVector: UInt16 = 0xFFFC
-    let RESETVector: UInt16 = 0xFFFE
-
-    /// The 16-bit program counter PC.
-    public var PC: UInt16 = 0x0000
-    
-    /// The 16-bit  system stack pointer S.
-    public var S: UInt16 = 0x00FF
-    
     /// The 8-bit accumulator `A`.
-    public var A: UInt8 = 0x00
+    public var A: UInt8 = 0
     
     /// The 8-bit accumulator `B`.
-    public var B: UInt8 = 0x00
+    public var B: UInt8 = 0
     
-    /// The 16-bit accumulator D.
-    ///
     /// D is the concatentation of accumulators A and B.
     public var D: UInt16 {
         get {
@@ -88,24 +72,42 @@ public class Turbo9CPU {
         }
     }
     
+    /// The 16-bit index register `X`.
+    public var X: UInt16 = 0
+    
+    /// The 16-bit index register `Y`.
+    public var Y: UInt16 = 0
+    
+    /// The 16-bit user stack pointer Y.
+    public var U: UInt16 = 0
+    
+    /// The 8-bit direct page register `DP`.
+    public var DP: UInt8 = 0
+    
+    /// The 8-bit condition code register `CC`.
+    public var CC: UInt8 = 0
+    
+    /// The 16-bit  system stack pointer S.
+    public var S: UInt16 = 0
+
+    /// The 16-bit program counter PC.
+    public var PC: UInt16 = 0
+
+    let SWI3Vector: UInt16 = 0xFFF2
+    let SWI2Vector: UInt16 = 0xFFF4
+    let FIRQVector: UInt16 = 0xFFF6
+    let IRQVector: UInt16 = 0xFFF8
+    let SWIVector: UInt16 = 0xFFFA
+    let NMIVector: UInt16 = 0xFFFC
+    let RESETVector: UInt16 = 0xFFFE
+    
     public var memoryDump: String {
         self.bus.ramDump(address: 0, numBytes: 0x10000)
     }
     
-    /// The 16-bit index register `X`.
-    public var X: UInt16 = 0x00
-    
-    /// The 16-bit index register `Y`.
-    public var Y: UInt16 = 0x00
-    
-    /// The 16-bit user stack pointer Y.
-    public var U: UInt16 = 0x0000
-    
-    /// The 8-bit direct page register `DP`.
-    public var DP: UInt8 = 0x00
-    
-    /// The 8-bit condition code register `CC`.
-    public  var CC: UInt8 = 0x00
+    public var registers: String {
+        return "A: \(A.asHex)\nB: \(B.asHex)\nD: \(D.asHex)\nX: \(X.asHex)\nY: \(Y.asHex)\nU: \(U.asHex)\nSP: \(S.asHex)\nDP: \(DP.asHex)\nCC: \(ccString)\n"
+    }
     
     /// The interrupt input line
     var IRQ: Bool = false
@@ -353,7 +355,12 @@ public class Turbo9CPU {
             }
         }
     }
-    
+
+    public func dumpMemory(address: UInt32, count: Int) -> String
+    {
+        return self.bus.ramDump(address: address, numBytes: count)
+    }
+
     // MARK: - Communicate with bus
     
     /// Read a single byte from memory.

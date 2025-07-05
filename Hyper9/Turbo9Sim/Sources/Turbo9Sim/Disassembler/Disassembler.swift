@@ -137,6 +137,7 @@ public class Disassembler: Turbo9CPU {
         let oldS = S
 
         var operation : Turbo9Operation? = nil
+        let startPC = pc
         
         if pc != UInt16.max {
             PC = pc
@@ -186,9 +187,9 @@ public class Disassembler: Turbo9CPU {
                     PC = PC &+ 1
                     let operand = getOperand(using: .imm8, offset: PC)
                     let os9 = OpCode(.swi2, .imm8, 1)
-                    operation = Turbo9Operation(label: label, offset: offset, preByte: prebyte, opcode: opcodeByte, instruction: os9.0, addressMode: opcode.1, operand: operand, postOperand: postOperand, size: PC &- oldPC)
+                    operation = Turbo9Operation(label: label, offset: offset, preByte: prebyte, opcode: opcodeByte, instruction: os9.0, addressMode: opcode.1, operand: operand, postOperand: postOperand, size: PC &- startPC)
                 } else {
-                    operation = Turbo9Operation(label: label, offset: offset, preByte: prebyte, opcode: opcodeByte, instruction: opcode.0, addressMode: opcode.1, operand: operand, postOperand: postOperand, size: PC &- oldPC)
+                    operation = Turbo9Operation(label: label, offset: offset, preByte: prebyte, opcode: opcodeByte, instruction: opcode.0, addressMode: opcode.1, operand: operand, postOperand: postOperand, size: PC &- startPC)
                 }
             }
         }
@@ -206,8 +207,22 @@ public class Disassembler: Turbo9CPU {
         return operation
     }
 
-    public func disassemble(instructionCount : UInt = 1, startPC : UInt16 = UInt16.max) -> [String] {
+    public func disassemble(instructionCount : UInt = 1, startPC : UInt16 = 0, restAPI : Bool = false) -> [String] {
         let oldPC = PC
+        if restAPI == true {
+            var tempPC = startPC
+            var operations = [Turbo9Operation]()
+            // This is being called outside of a running context.
+            for _ in 0..<instructionCount {
+                if let op = disassemble(pc: tempPC) {
+                    tempPC = tempPC &+ UInt16(op.size)
+                    operations.append(op)
+                 }
+            }
+            PC = oldPC
+            // Map operations to String and return it.
+            return operations.map { $0.asCode }
+        }
         for _ in 0..<instructionCount {
             if let op = disassemble(pc: PC) {
                 PC = PC &+ UInt16(op.size)
@@ -231,10 +246,12 @@ public class Disassembler: Turbo9CPU {
         return "A:\(A) B:\(B) DP:\(DP) CC:\(CC) X:\(X) Y:\(Y) U:\(U) S:\(S)"
     }
     
-    override public func step() throws {
+    public func step() throws -> Turbo9Operation? {
+        var result : Turbo9Operation?
         var logLine = ""
-        if syncToInterrupt == false && logging == true {
+        if syncToInterrupt == false {
             if let op = disassemble(pc: PC) {
+                result = op
                 logLine = op.asCode
             }
         }
@@ -249,15 +266,19 @@ public class Disassembler: Turbo9CPU {
                 c(logLine)
             }
         }
+        
+        return result
     }
     
-    public func checkDisassembly() {
+    public func checkDisassembly(count : UInt = 30) -> [String] {
+        var result : [String] = []
         if let last = operations.last, let first = operations.first {
             if PC >= last.offset || PC <= first.offset {
                 operations = []
-                let _ = disassemble(instructionCount: 30, startPC: PC)
+                result = disassemble(instructionCount: count, startPC: PC)
             }
         }
+        return result
     }
     
     // MARK: - Private methods

@@ -56,8 +56,7 @@ extension Turbo9CPU {
     /// Set the value of an 8-bit register.
     private func setRegister8(_ reg: Register, value: UInt8) throws {
         switch reg {
-        case .A:
-            A = value
+        case .A:A = value
         case .B:
             B = value
         case .CC:

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		681BE9A52DF2F26A004F7725 /* Vapor in Frameworks */ = {isa = PBXBuildFile; productRef = 681BE9A42DF2F26A004F7725 /* Vapor */; };
+		681BE9B92DF51315004F7725 /* MCP in Frameworks */ = {isa = PBXBuildFile; productRef = 681BE9B82DF51315004F7725 /* MCP */; };
+		681BE9BB2DF51578004F7725 /* Vapor in Frameworks */ = {isa = PBXBuildFile; productRef = 681BE9BA2DF51578004F7725 /* Vapor */; };
+		681BE9BD2DF515C3004F7725 /* Vapor in Frameworks */ = {isa = PBXBuildFile; productRef = 681BE9BC2DF515C3004F7725 /* Vapor */; };
 		6837DB752D5309300081A040 /* Turbo9Sim in Frameworks */ = {isa = PBXBuildFile; productRef = 6837DB742D5309300081A040 /* Turbo9Sim */; };
 		689C2FE92D7B556A00B1952E /* CocoaLumberjack in Frameworks */ = {isa = PBXBuildFile; productRef = 689C2FE82D7B556A00B1952E /* CocoaLumberjack */; };
 		689C2FEB2D7B556A00B1952E /* CocoaLumberjackSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 689C2FEA2D7B556A00B1952E /* CocoaLumberjackSwift */; };
@@ -32,6 +36,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		681BE9AE2DF5123E004F7725 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		68BF43A92D7DB50C00F3B3A8 /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -45,6 +58,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		681BE9B02DF5123E004F7725 /* hyper9-mcp-server */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "hyper9-mcp-server"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6838F59B2DE6710C007577CF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		68440D692DA2C88800890262 /* Hyper9.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Hyper9.xctestplan; sourceTree = "<group>"; };
 		684F6DC92D60CB3200EF4315 /* Turbo9.pxd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Turbo9.pxd; sourceTree = "<group>"; };
@@ -55,6 +69,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		681BE9B12DF5123E004F7725 /* hyper9-mcp-server */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "hyper9-mcp-server";
+			sourceTree = "<group>";
+		};
 		6888ABF52D413E9F004DC040 /* Hyper9 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Hyper9;
@@ -78,6 +97,15 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		681BE9AD2DF5123E004F7725 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				681BE9B92DF51315004F7725 /* MCP in Frameworks */,
+				681BE9BB2DF51578004F7725 /* Vapor in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6888ABF02D413E9F004DC040 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -85,6 +113,7 @@
 				689C2FE92D7B556A00B1952E /* CocoaLumberjack in Frameworks */,
 				6837DB752D5309300081A040 /* Turbo9Sim in Frameworks */,
 				689C2FED2D7B556A00B1952E /* CocoaLumberjackSwiftLogBackend in Frameworks */,
+				681BE9A52DF2F26A004F7725 /* Vapor in Frameworks */,
 				689C2FEB2D7B556A00B1952E /* CocoaLumberjackSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -108,6 +137,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68BF43B42D7DB52500F3B3A8 /* Turbo9Sim in Frameworks */,
+				681BE9BD2DF515C3004F7725 /* Vapor in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +154,7 @@
 				6888AC072D413EA2004DC040 /* Hyper9Tests */,
 				6888AC112D413EA2004DC040 /* Hyper9UITests */,
 				68BF43AC2D7DB50C00F3B3A8 /* hyper9-cmd */,
+				681BE9B12DF5123E004F7725 /* hyper9-mcp-server */,
 				68BF43B22D7DB52500F3B3A8 /* Frameworks */,
 				6888ABF42D413E9F004DC040 /* Products */,
 			);
@@ -136,6 +167,7 @@
 				6888AC042D413EA2004DC040 /* Hyper9Tests.xctest */,
 				6888AC0E2D413EA2004DC040 /* Hyper9UITests.xctest */,
 				68BF43AB2D7DB50C00F3B3A8 /* hyper9-cmd */,
+				681BE9B02DF5123E004F7725 /* hyper9-mcp-server */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -150,6 +182,31 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		681BE9AF2DF5123E004F7725 /* hyper9-mcp-server */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 681BE9B42DF5123E004F7725 /* Build configuration list for PBXNativeTarget "hyper9-mcp-server" */;
+			buildPhases = (
+				681BE9AC2DF5123E004F7725 /* Sources */,
+				681BE9AD2DF5123E004F7725 /* Frameworks */,
+				681BE9AE2DF5123E004F7725 /* CopyFiles */,
+				681BE9C02DF5A957004F7725 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				681BE9B12DF5123E004F7725 /* hyper9-mcp-server */,
+			);
+			name = "hyper9-mcp-server";
+			packageProductDependencies = (
+				681BE9B82DF51315004F7725 /* MCP */,
+				681BE9BA2DF51578004F7725 /* Vapor */,
+			);
+			productName = "hyper9-mcp-server";
+			productReference = 681BE9B02DF5123E004F7725 /* hyper9-mcp-server */;
+			productType = "com.apple.product-type.tool";
+		};
 		6888ABF22D413E9F004DC040 /* Hyper9 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6888AC182D413EA2004DC040 /* Build configuration list for PBXNativeTarget "Hyper9" */;
@@ -171,6 +228,7 @@
 				689C2FE82D7B556A00B1952E /* CocoaLumberjack */,
 				689C2FEA2D7B556A00B1952E /* CocoaLumberjackSwift */,
 				689C2FEC2D7B556A00B1952E /* CocoaLumberjackSwiftLogBackend */,
+				681BE9A42DF2F26A004F7725 /* Vapor */,
 			);
 			productName = SwiftTurbo9;
 			productReference = 6888ABF32D413E9F004DC040 /* Hyper9.app */;
@@ -240,6 +298,7 @@
 			name = "hyper9-cmd";
 			packageProductDependencies = (
 				68BF43B32D7DB52500F3B3A8 /* Turbo9Sim */,
+				681BE9BC2DF515C3004F7725 /* Vapor */,
 			);
 			productName = "hyper9-cmd";
 			productReference = 68BF43AB2D7DB50C00F3B3A8 /* hyper9-cmd */;
@@ -252,9 +311,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1630;
+				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1630;
 				TargetAttributes = {
+					681BE9AF2DF5123E004F7725 = {
+						CreatedOnToolsVersion = 16.2;
+					};
 					6888ABF22D413E9F004DC040 = {
 						CreatedOnToolsVersion = 16.2;
 					};
@@ -283,6 +345,8 @@
 			packageReferences = (
 				6837DB732D5309300081A040 /* XCLocalSwiftPackageReference "SwiftTurbo9/Turbo9Sim" */,
 				689C2FE72D7B556A00B1952E /* XCRemoteSwiftPackageReference "CocoaLumberjack" */,
+				681BE9A32DF2F26A004F7725 /* XCRemoteSwiftPackageReference "vapor" */,
+				681BE9B72DF51315004F7725 /* XCRemoteSwiftPackageReference "swift-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6888ABF42D413E9F004DC040 /* Products */;
@@ -293,6 +357,7 @@
 				6888AC032D413EA2004DC040 /* Hyper9Tests */,
 				6888AC0D2D413EA2004DC040 /* Hyper9UITests */,
 				68BF43AA2D7DB50C00F3B3A8 /* hyper9-cmd */,
+				681BE9AF2DF5123E004F7725 /* hyper9-mcp-server */,
 			);
 		};
 /* End PBXProject section */
@@ -321,7 +386,34 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		681BE9C02DF5A957004F7725 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Change these paths as needed\nSOURCE_PATH=\"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\nDEST_PATH=\"/Users/boisy/bin\"\n\nmkdir -p \"$DEST_PATH\"\ncp \"$SOURCE_PATH\" \"$DEST_PATH\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		681BE9AC2DF5123E004F7725 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6888ABEF2D413E9F004DC040 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -366,6 +458,30 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		681BE9B52DF5123E004F7725 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		681BE9B62DF5123E004F7725 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		6888AC162D413EA2004DC040 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -657,7 +773,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -670,13 +786,22 @@
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		681BE9B42DF5123E004F7725 /* Build configuration list for PBXNativeTarget "hyper9-mcp-server" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				681BE9B52DF5123E004F7725 /* Debug */,
+				681BE9B62DF5123E004F7725 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		6888ABEE2D413E9F004DC040 /* Build configuration list for PBXProject "Hyper9" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -732,6 +857,22 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		681BE9A32DF2F26A004F7725 /* XCRemoteSwiftPackageReference "vapor" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/vapor/vapor.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.115.0;
+			};
+		};
+		681BE9B72DF51315004F7725 /* XCRemoteSwiftPackageReference "swift-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/modelcontextprotocol/swift-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.0;
+			};
+		};
 		689C2FE72D7B556A00B1952E /* XCRemoteSwiftPackageReference "CocoaLumberjack" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CocoaLumberjack/CocoaLumberjack";
@@ -743,6 +884,26 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		681BE9A42DF2F26A004F7725 /* Vapor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 681BE9A32DF2F26A004F7725 /* XCRemoteSwiftPackageReference "vapor" */;
+			productName = Vapor;
+		};
+		681BE9B82DF51315004F7725 /* MCP */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 681BE9B72DF51315004F7725 /* XCRemoteSwiftPackageReference "swift-sdk" */;
+			productName = MCP;
+		};
+		681BE9BA2DF51578004F7725 /* Vapor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 681BE9A32DF2F26A004F7725 /* XCRemoteSwiftPackageReference "vapor" */;
+			productName = Vapor;
+		};
+		681BE9BC2DF515C3004F7725 /* Vapor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 681BE9A32DF2F26A004F7725 /* XCRemoteSwiftPackageReference "vapor" */;
+			productName = Vapor;
+		};
 		6837DB742D5309300081A040 /* Turbo9Sim */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Turbo9Sim;

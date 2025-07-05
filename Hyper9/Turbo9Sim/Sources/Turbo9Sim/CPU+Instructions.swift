@@ -192,7 +192,6 @@ extension Turbo9CPU {
             }
             lowerNibble += 6
         }
-        
         A = upperNibble << 4 | lowerNibble
         
         setNegativeFlag(using: A)
@@ -225,11 +224,10 @@ extension Turbo9CPU {
         let result = UInt16(A) * UInt16(B)
         
         // Convert result to unsigned 16-bit to extract high and low bytes.
-        let highByte = UInt8(result >> 8)
+        let _ = UInt8(result >> 8)
         let lowByte = UInt8(result & 0xFF)
         
-        // Store the high and low bytes back into acca and accb.
-        A = highByte
+        // Store the high and low bytes back into acca and accb.A =highByte
         B = lowByte
 
         // Update flags based on the result.
@@ -256,8 +254,7 @@ extension Turbo9CPU {
     /// Condition codes: Recovered from stack.
     func rti(addressMode: AddressMode) -> ShouldIncludeExtraClockCycles {
         CC = pullByteFromS()
-        if readCC(.entire) == true {
-            A = pullByteFromS()
+        if readCC(.entire) == true {A = pullByteFromS()
             B = pullByteFromS()
             DP = pullByteFromS()
             X = pullWordFromS()

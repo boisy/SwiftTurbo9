@@ -18,15 +18,7 @@ struct ControlView: View {
         let cyclesPerTick : UInt = 1000
         let stepClosure :() -> Void = {
             if stepCount > 0 {
-                model.updateCPU()
-                let startTime = Date()
-                
-                for _ in 1...stepCount {
-                    model.step()
-                }
-                model.instructionsPerSecond = Double(stepCount) / Date().timeIntervalSince(startTime)
-                model.turbo9.checkDisassembly()
-                model.updateUI()
+                let _ = model.step()
             }
         }
         let runClosure : () -> Void = {
@@ -42,32 +34,36 @@ struct ControlView: View {
                     let startTime = Date()
                     var instructionCount = 0
                     var breakpoint = false
-                    repeat {
-                        if breakpoint == false {
-                            model.step()
-                            instructionCount += 1
-                            if model.timerRunning == true && model.turbo9.clockCycles % cyclesPerTick == 0 {
-                                model.invokeTimer()
-                            }
-                            if model.timerRunning == true && model.turbo9.clockCycles % (cyclesPerTick * 50) == 0 {
-                                DispatchQueue.main.sync {
-                                    //                                            model.turbo9.checkDisassembly()
-                                    //                                            model.updateUI()
+                    do {
+                        repeat {
+                            if breakpoint == false {
+                                let _ = try model.turbo9.step()
+                                instructionCount += 1
+                                if model.timerRunning == true && model.turbo9.clockCycles % cyclesPerTick == 0 {
+                                    model.invokeTimer()
+                                }
+                                if model.timerRunning == true && model.turbo9.clockCycles % (cyclesPerTick * 50) == 0 {
+                                    DispatchQueue.main.sync {
+                                        //                                            model.turbo9.checkDisassembly()
+                                        //                                            model.updateUI()
+                                    }
                                 }
                             }
-                        }
-                        for b in breakpoints {
-                            if b.asUInt16FromHex == model.turbo9.PC {
-                                breakpoint = true
-                                break
+                            for b in breakpoints {
+                                if b.asUInt16FromHex == model.turbo9.PC {
+                                    breakpoint = true
+                                    break
+                                }
                             }
-                        }
-                    } while model.running == true && breakpoint == false
+                        } while model.running == true && breakpoint == false
+                    } catch {
+                        
+                    }
                     DispatchQueue.main.async {
                         model.instructionsPerSecond = Double(instructionCount) / Date().timeIntervalSince(startTime)
                         model.running = false
                         goLabel = "play.fill"
-                        model.turbo9.checkDisassembly()
+                        let _ = model.turbo9.checkDisassembly()
                         model.updateUI()
                     }
                 }
@@ -79,7 +75,7 @@ struct ControlView: View {
                     Button(action: {
                         model.running = false
                         model.turbo9.assertIRQ()
-                        model.turbo9.checkDisassembly()
+                        let _ = model.turbo9.checkDisassembly()
                         model.updateUI()
                     }) {
                         Image(systemName: "i.circle")
@@ -88,7 +84,7 @@ struct ControlView: View {
                     Button(action: {
                         model.running = false
                         model.turbo9.assertFIRQ()
-                        model.turbo9.checkDisassembly()
+                        let _ = model.turbo9.checkDisassembly()
                         model.updateUI()
                     }) {
                         Image(systemName: "f.circle")
@@ -97,7 +93,7 @@ struct ControlView: View {
                     Button(action: {
                         model.running = false
                         model.turbo9.assertNMI()
-                        model.turbo9.checkDisassembly()
+                        let _ = model.turbo9.checkDisassembly()
                         model.updateUI()
                     }) {
                         Image(systemName: "n.circle")
@@ -106,7 +102,7 @@ struct ControlView: View {
                     Button(action: {
                         model.running = false
                         model.invokeTimer()
-                        model.turbo9.checkDisassembly()
+                        let _ = model.turbo9.checkDisassembly()
                         model.updateUI()
                     }) {
                         Image(systemName: "timer")

@@ -109,16 +109,29 @@ class Turbo9ViewModel: ObservableObject {
     private var logBuffer : String = ""
 
     func disassemble(instructionCount: UInt) {
-        let _ = turbo9.disassemble(instructionCount: instructionCount)
+        let _ = turbo9.disassemble(instructionCount: instructionCount, startPC: PC)
         updateUI()
     }
     
-    func step() {
+    func step(stepCount: UInt = 1) -> [Turbo9Sim.Disassembler.Turbo9Operation] {
+        var result : [Turbo9Sim.Disassembler.Turbo9Operation] = []
         do {
-            try turbo9.step()
+            updateCPU()
+            let startTime = Date()
+            let lastPC = PC
+            for _ in 1...stepCount {
+                if let op = try turbo9.step(), PC != lastPC {
+                    result.append(op)
+                }
+            }
+            instructionsPerSecond = Double(stepCount) / Date().timeIntervalSince(startTime)
+            let _ = turbo9.checkDisassembly()
+            updateUI()
         } catch {
             
         }
+        
+        return result
     }
 
     func load(url: URL) {
@@ -234,7 +247,7 @@ class Turbo9ViewModel: ObservableObject {
 
     func startTask() {
         do {
-            try turbo9.step()
+            let _ = try turbo9.step()
             updateUI()
         } catch {
             
